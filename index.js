@@ -29,7 +29,7 @@ const bookStore = {
         },
         {
             id:5,
-            title: 'You Don’t Know JS',
+            title: "You Don't Know JS",
             author: 'Kyle Simpson',
             imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41T5H8u7fUL._SX331_BO1,204,203,200_.jpg'
         },
@@ -43,5 +43,41 @@ const bookStore = {
     ]
 }
 
-// Write your code here!
+// Step 1: Update Existing Element
+// Select the DOM element with the id of 'header'
+const header = document.querySelector('#header');
 
+// Update the header text content
+header.textContent = bookStore.name;
+
+// Step 2: Create New Elements for each book
+// Select the book-list element
+const bookList = document.querySelector('#book-list');
+
+// First, remove the example book
+const elementToDelete = document.querySelector('#delete-this');
+if (elementToDelete) {
+    elementToDelete.remove();
+}
+
+// Loop through every book in the bookStore
+bookStore.books.forEach(book => {
+    // Create the required elements
+    const bookContainer = document.createElement('li');
+    const bookTitle = document.createElement('h3');
+    const bookAuthor = document.createElement('p');
+    const bookImage = document.createElement('img');
+
+    // Set the content for each element
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookImage.src = book.imageUrl;
+
+    // Append elements to the container
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    // Append the container to the book list
+    bookList.appendChild(bookContainer);
+});
